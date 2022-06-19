@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.mapper.IAptMapper">
+    <select id="selectAptById" parameterType="string" resultType="com.ssafy.happyhouse.model.dtos.AptDto">
+        select * from `apttrades` where aptName = #{aptId}
+    </select>
+
+    <select id="selectAptByDong" parameterType="string" resultType="com.ssafy.happyhouse.model.dtos.AptDto">
+        select * from `apttrades` where `dong` = concat(' ', #{dong})
+    </select>
+</mapper>

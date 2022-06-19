@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.mapper.IBoardMapper">
+	<delete id="deleteArticle" parameterType="int">
+		delete from `article`
+		where `index` = #{index}
+	</delete>
+	
+	<delete id="deleteComment" parameterType="int">
+		delete from `comment`
+		where `index` = #{index}
+	</delete>
+	
+	<insert id="insertArticle" parameterType="com.ssafy.happyhouse.model.dtos.ArticleDto">
+		insert into `article` (`title`, `content`, `writer`, `time`, `board`)
+		values (#{title}, #{content}, #{writer}, #{time}, #{board})
+	</insert>
+	
+	<insert id="insertComment" parameterType="com.ssafy.happyhouse.model.dtos.CommentDto">
+		insert into `comment` (`content`, `writer`, `time`, `article_index`)
+		values (#{content}, #{writer}, #{time}, #{articleIndex})
+	</insert>
+	
+	<select id="selectArticle" parameterType="int" resultType="com.ssafy.happyhouse.model.dtos.ArticleDto">
+		select * from `article`
+		where `index` = #{index}
+	</select>
+	
+	<select id="selectArticleByBoard" parameterType="string" resultType="com.ssafy.happyhouse.model.dtos.ArticleDto">
+		select * from `article`
+		where `board` = #{board}
+	</select>
+	
+	<select id="selectCommentsByArticle" parameterType="int" resultType="com.ssafy.happyhouse.model.dtos.CommentDto">
+		select * from `comment`
+		where `article_index` = #{articleIndex}
+	</select>
+	
+	<update id="updateArticle">
+		update `article`
+		set `title` = #{articleDto.title},
+			`content` = #{articleDto.content}
+		where `index` = #{index}
+	</update>
+	
+	<update id="updateComment">
+		update `article`
+		set `content` = #{commentDto.content}
+		where `index` = #{index}
+	</update>
+</mapper>

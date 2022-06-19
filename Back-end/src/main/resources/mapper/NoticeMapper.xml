@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.mapper.INoticeMapper">
+    <select id="searchNotices" resultType="com.ssafy.happyhouse.model.dtos.NoticeDto">
+		select * from notices;
+	</select>
+	
+	<select id="readNotice" parameterType="int" resultType="com.ssafy.happyhouse.model.dtos.NoticeDto">
+		select * from notices
+		where idx=#{idx}
+	</select>
+	
+	<insert id="insertNotice" parameterType="com.ssafy.happyhouse.model.dtos.NoticeDto">
+		insert into notices (title, contents, date)
+		values (#{title}, #{contents}, #{date})
+	</insert>
+	
+	<update id="modifyNotice" parameterType="com.ssafy.happyhouse.model.dtos.NoticeDto">
+		update notices 
+		set title=#{title}, contents=#{contents} 
+		where idx=#{idx}
+	</update>
+	
+	<delete id="deleteNotice"  parameterType="int" >
+		delete from notices
+		where idx=#{idx}
+	</delete>
+</mapper>
